@@ -133,3 +133,4 @@ override.tf.json
 # aws tool
 ec2.ini
 ec2.py
+aws-creds.sh
