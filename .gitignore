@@ -130,3 +130,6 @@ override.tf.json
 #
 # !example_override.tf
 
+# aws tool
+ec2.ini
+ec2.py
