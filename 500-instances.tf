@@ -11,5 +11,5 @@ resource "aws_instance" "factorio_server" {
 }
 
 resource "aws_eip" "game_eip" {
-  instance                  = "${aws_instance.factorio_server.id}"
+  instance = "${aws_instance.factorio_server.id}"
 }
