@@ -14,6 +14,7 @@ python3, and pip3 installed locally.
 
 ### Get dependencies
 
+    $ mkdir -p ~/.ansible/factorio-tmp
     $ wget https://raw.githubusercontent.com/ansible/ansible/devel/contrib/inventory/ec2.py -O ec2.py
     $ virtualenv -p /usr/bin/python3 venv
     $ source venv/bin/activate
