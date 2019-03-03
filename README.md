@@ -1,6 +1,8 @@
 # factorio-server
 Templated factorio server using terraform with an AWS provider and ansible configuration.
 
+Uses this role: https://github.com/bplower/ansible-factorio
+
 # Setup environment
 Instructions are written using Ubuntu as localhost.  You will need terraform,
 python3, and pip3 installed locally.
