@@ -1,0 +1,21 @@
+---
+- name: Factorio farm
+  hosts: all
+  remote_user: ubuntu
+  become: true
+  become_method: sudo
+  gather_facts: False
+  pre_tasks:
+    - name: "Install python"
+      raw: sudo apt -y install python
+
+  roles:
+  - role: bplower.factorio
+    service_port: 50000
+    server_version: 0.16.51
+    factorio_server_settings:
+      name: "Factorio cloud test"
+      max_players: 4
+      game_password: "notthatsecret"
+      visibility:
+        public: false
