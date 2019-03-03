@@ -132,5 +132,8 @@ override.tf.json
 
 # my stuff
 infra.plan
-ec2.py
 aws-creds.sh
+
+# ansible
+*.retry
+ec2.py
