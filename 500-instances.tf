@@ -1,5 +1,5 @@
 resource "aws_instance" "factorio_server" {
-  ami             = "${data.aws_ami.ubuntu.id}"
+  ami             = "${data.aws_ami.amazon.id}"
   instance_type   = "t3.micro"
   key_name        = "${aws_key_pair.jball_key_pair.key_name}"
   security_groups = [ "${aws_security_group.game.name}" ]
