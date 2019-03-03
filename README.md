@@ -1,5 +1,5 @@
 # factorio-server
-Templated factorio server
+Templated factorio server using terraform with an AWS provider and ansible configuration.
 
 # Setup environment
 Instructions are written using Ubuntu as localhost.  You will need terraform,
