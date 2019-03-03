@@ -2,10 +2,10 @@ resource "aws_security_group" "game" {
 
   # allow all out to all
   egress {
-      from_port = "0"
-      to_port   = "0"
-      protocol  = "-1"
-      self      = "true"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # allow ssh to all
@@ -24,9 +24,9 @@ resource "aws_security_group" "game" {
   }
 
   ingress {
-    from_port   = "50000"
-    to_port     = "50000"
-    protocol    = "tcp"
+    from_port   = "34197"
+    to_port     = "34197"
+    protocol    = "udp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
