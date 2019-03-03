@@ -130,7 +130,7 @@ override.tf.json
 #
 # !example_override.tf
 
-# aws tool
-ec2.ini
+# my stuff
+infra.plan
 ec2.py
 aws-creds.sh
