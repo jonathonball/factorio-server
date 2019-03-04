@@ -1,21 +1,62 @@
 ---
-- name: Factorio farm
+- name: Factorio server
   hosts: all
-  remote_user: ubuntu
+  remote_user: ec2-user
   become: true
   become_method: sudo
   gather_facts: False
   pre_tasks:
-    - name: "Install python"
-      raw: sudo apt -y install python
+    - name: Create factorio user
+      user:
+        name: factorio
+        state: present
+    - name: Create volume mount point
+      file:
+        path: /mnt/factorio-saves
+        state: directory
+        owner: factorio
+        group: factorio
+        recurse: True
+  post_tasks:
+    - name: Move saves to temporary location
+      copy:
+        remote_src: True
+        src: /home/factorio/factorio/saves/default-save.zip
+        dest: /home/factorio/default-save.zip
+        user: factorio
+        group: factorio
+    - name: Remove default save location
+      file:
+        path: /home/factorio/factorio/saves
+        state: absent
+    - name: Create symlink to cloud saves
+      file:
+        src: /mnt/factorio-saves
+        dest: /home/factorio/factorio/saves
+        owner: factorio
+        group: factorio
+        state: link
+    - name: Reload factorio server (daemon_reload)
+      systemd:
+        name: factorio-server
+        daemon_reload: yes
+    - name: Restart factorio service
+      systemd:
+        name: factorio-server
+        state: restarted
 
   roles:
-  - role: bplower.factorio
-    service_port: 50000
-    server_version: 0.16.51
-    factorio_server_settings:
-      name: "Factorio cloud test"
-      max_players: 4
-      game_password: "notthatsecret"
-      visibility:
-        public: false
+    - role: aws_volume_mount
+      block_device_data:
+        - name: sdh
+          mount_point: /mnt/factorio-saves
+          filesystem: ext4
+    - role: bplower.factorio
+      service_port: 50000
+      server_version: 0.16.51
+      factorio_server_settings:
+        name: "Factorio cloud test"
+        max_players: 4
+        game_password: "notthatsecret"
+        visibility:
+          public: false
