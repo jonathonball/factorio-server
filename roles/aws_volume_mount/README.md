@@ -27,15 +27,14 @@ None
 Example Playbook
 ----------------
 
----
-- name: Example
-  hosts: all
-  roles:
-    - role: aws_volume_mount
-      block_device_data:
-        - name: sdx
-          mount_point: /some/point/in/fs
-          filesystem: ext4
+    - name: Example
+      hosts: all
+      roles:
+        - role: aws_volume_mount
+          block_device_data:
+            - name: sdx
+              mount_point: /some/point/in/fs
+              filesystem: ext4
 
 License
 -------
