@@ -1,2 +1,33 @@
 ---
 # tasks file for aws_volume_mount
+
+- name: Identify which nvme name goes with each volume
+  script: identify-device-by-id.sh "{{ hostvars[inventory_hostname].ec2_block_devices[item.name] }}"
+  with_items: "{{ block_device_data }}"
+  register: block_devices
+
+- name: Format select block devices
+  filesystem:
+     dev: "{{ item[0].stdout | trim }}"
+     force: False
+     fstype: "{{ item[1].filesystem }}"
+  with_nested:
+    - "{{ block_devices.results }}"
+    - "{{ block_device_data }}"
+
+- name: Find block device UUIDs
+  shell: lsblk -n -o UUID {{ item.stdout | trim }}
+  register: block_device_uuids
+  with_items:
+    - "{{ block_devices.results }}"
+
+- name: Mount block devices
+  mount:
+    path: "{{ item[0].mount_point }}"
+    src: UUID={{ item[1].stdout | trim }}
+    fstype: "{{ item[0].filesystem }}"
+    opts: noatime,rw,user
+    state: mounted
+  with_nested:
+    - "{{ block_device_data }}"
+    - "{{ block_device_uuids.results }}"
