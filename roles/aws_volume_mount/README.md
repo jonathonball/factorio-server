@@ -1,7 +1,7 @@
 aws volume mount
 =========
 
-Mounts a list of EBC volumes by their /dev/sdX designation useful for when on 
+Mounts a list of EBS volumes by their /dev/sdX designation useful for when on 
 a machine that uses an nvme naming scheme.
 
 Requirements
