@@ -1,0 +1,19 @@
+---
+- name: Factorio server
+  hosts: all
+  remote_user: ec2-user
+  become: true
+  become_method: sudo
+  gather_facts: False
+
+  roles:
+    - role: bplower.factorio
+      service_port: 50000
+      server_version: 0.16.51
+      factorio_default_save: /opt/factorio/default-save.zip
+      factorio_server_settings:
+        name: "Factorio cloud test"
+        max_players: 4
+        game_password: "notthatsecret"
+        visibility:
+          public: false
