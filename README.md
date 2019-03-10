@@ -3,9 +3,11 @@ Templated factorio server using terraform with an AWS provider and ansible confi
 
 Uses this role: https://github.com/bplower/ansible-factorio
 
+# Prerequisites
+You will need an existing EBS volume in AWS with a tag `Name=factorio_saves`.  This is where your save games will be stored.  This infrastructure is designed to expect an existing EBS resource to ensure that terraform will never try to regenerate it.
+
 # Setup environment
-Instructions are written using Ubuntu as localhost.  You will need terraform,
-python3, and pip3 installed locally.
+Instructions are written using Ubuntu as localhost.  You will need terraform, python3, and pip3 installed locally.
 
 ### Get this repo
 
