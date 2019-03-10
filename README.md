@@ -33,4 +33,4 @@ python3, and pip3 installed locally.
     [venv] $ terraform init # if needed
     [venv] $ terraform plan -out infra.plan
     [venv] $ terraform apply "infra.plan"
-    [venv] $ ansible-playbook -i ec2.py factorio-server.yaml
+    [venv] $ ansible-playbook -i ec2.py playbooks/factorio-server.yaml
