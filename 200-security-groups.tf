@@ -1,4 +1,5 @@
 resource "aws_security_group" "game" {
+  name = "factorio_security_group"
 
   # allow all out to all
   egress {
