@@ -2,12 +2,12 @@ data "template_file" "init-script" {
   template = "${ file("scripts/init.yaml") }"
 
   vars = {
-    volume_ephemeral_name = "${var.save_games_ebs_volume_ephemeral_name}"
+    volume_ephemeral_name = "${ var.save_games_ebs_volume_ephemeral_name }"
   }
 }
 
 data "template_file" "mount-script" {
-  template = "${ file("scripts/mount.sh")}"
+  template = "${ file("scripts/mount.sh") }"
 
   vars = {
     volume_ephemeral_name = "${ var.save_games_ebs_volume_ephemeral_name }"

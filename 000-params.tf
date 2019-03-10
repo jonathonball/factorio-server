@@ -1,6 +1,6 @@
 # Configure the AWS Provider
 provider "aws" {
-  region     = "us-east-1"
+  region = "us-east-1"
 }
 
 resource "aws_key_pair" "jball_key_pair" {
