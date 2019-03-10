@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NVME_LOG_FILE=/var/log/nvme.log
-EPHEMERAL_NAME=sdx;
+NVME_LOG_FILE=${ log_path };
+EPHEMERAL_NAME=${ volume_ephemeral_name };
 EPHEMERAL_PATH=/dev/$${EPHEMERAL_NAME};
-MOUNT_POINT=/opt/factorio;
+MOUNT_POINT=${ mountpoint };
 BLOCK_DEVICE=;
 
 function write_log() {
