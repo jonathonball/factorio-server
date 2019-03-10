@@ -17,3 +17,8 @@
         game_password: "notthatsecret"
         visibility:
           public: false
+    - role: aws_volume_mount
+      block_device_data:
+        - name: sdx
+          filesystem: ext4
+          mount_point: /opt/factorio

@@ -88,14 +88,3 @@ fi;
 
 write_log "Attempting to mount $${EPHEMERAL_PATH} -> $${MOUNT_POINT}";
 mount $EPHEMERAL_PATH $MOUNT_POINT;
-
-# UUID=$(blkid --match-tag UUID --output export $EPHEMERAL_PATH | tail -1);
-# write_log "Found UUID for $${EPHEMERAL_PATH}: $${UUID}";
-# write_log "Checking /etc/fstab for $UUID";
-# eval $(echo $UUID)
-# if ! grep $UUID /etc/fstab; then
-#   FSTAB_LINE=$(echo -e "$${UUID}\t$${MOUNT_POINT}\text4\tdefaults,noatime,rw,user,umask=000\t0\t0");
-#   write_log "Writing next line to fstab:";
-#   write_log "$${FSTAB_LINE}";
-#   echo "$${FSTAB_LINE}" >> /etc/fstab;
-# fi;
