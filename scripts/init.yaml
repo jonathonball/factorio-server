@@ -3,5 +3,8 @@
 repo_update: true
 repo_upgrade: all
 
+packages:
+  - awslog
+
 runcmd:
   - touch /home/ec2-user/canary
