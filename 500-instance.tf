@@ -4,6 +4,7 @@ resource "aws_instance" "factorio_server" {
   key_name         = "${ aws_key_pair.jball_key_pair.key_name }"
   security_groups  = [ "${ aws_security_group.game.name }" ]
   user_data_base64 = "${ data.template_cloudinit_config.factorio_config.rendered }"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "factorio"
